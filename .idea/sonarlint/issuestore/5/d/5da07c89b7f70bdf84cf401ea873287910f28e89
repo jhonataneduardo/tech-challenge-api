@@ -1,0 +1,61 @@
+
+npython:S1192÷"UDefine a constant instead of duplicating this literal '%Y-%m-%d %H:%M:%S.%f' 4 times.(»Ç¿Í
+‹python:S1192á"mDefine a constant instead of duplicating this literal '"commit" has been deprecated and is a no-op.' 3 times.(à±®øÿÿÿÿ
+bpython:S1192ø"IDefine a constant instead of duplicating this literal '%Y-%m-%d' 3 times.(•ÈÏ®
+ppython:S1192ö"RDefine a constant instead of duplicating this literal '%Y-%m-%d %H:%M:%S' 6 times.(Ä•”Ğÿÿÿÿÿ
+rpython:S1186 "YAdd a nested comment explaining why this method is empty, or complete the implementation.(ª®‹æ
+Bpython:S1172Â"*Remove the unused function parameter "tp".(…ñ‹U
+Dpython:S1172¬
+"+Remove the unused function parameter "ctx".(Ï®Ç
+cpython:S1542Ğ"JRename function "AsIs" to match the regular expression ^[a-z_][a-z0-9_]*$.(şşè¥
+bpython:S1542ƒ"IRename function "Asc" to match the regular expression ^[a-z_][a-z0-9_]*$.(¡—Ö¨
+hpython:S1542‡"JRename function "Desc" to match the regular expression ^[a-z_][a-z0-9_]*$.(Ö”ì“øÿÿÿÿ
+dpython:S1542Ü"KRename function "Check" to match the regular expression ^[a-z_][a-z0-9_]*$.(¼Éı
+qpython:S1542ç"SRename function "CommaNodeList" to match the regular expression ^[a-z_][a-z0-9_]*$.(ü½¤îùÿÿÿÿ
+opython:S1542ë"VRename function "EnclosedNodeList" to match the regular expression ^[a-z_][a-z0-9_]*$.(ù”Ü–
+mpython:S3776Ó"TRefactor this function to reduce its Cognitive Complexity from 21 to the 15 allowed.(¡ÉÉî
+rpython:S3776²"TRefactor this function to reduce its Cognitive Complexity from 82 to the 15 allowed.(Œª—±øÿÿÿÿ
+wpython:S1186ö"YAdd a nested comment explaining why this method is empty, or complete the implementation.(¾™†¤şÿÿÿÿ
+‚python:S1871"dEither merge this branch with the identical one on line "3069" or change one of the implementations.(»²üÿÿÿÿ
+rpython:S1186¾"YAdd a nested comment explaining why this method is empty, or complete the implementation.(ªÁ¾
+rpython:S1186º"YAdd a nested comment explaining why this method is empty, or complete the implementation.(¦Û…ï
+Jpython:S1172½",Remove the unused function parameter "conn".(İ‚»İüÿÿÿÿ
+Rpython:S1172ß"4Remove the unused function parameter "named_cursor".(¹Ìû±şÿÿÿÿ
+rpython:S3776•"TRefactor this function to reduce its Cognitive Complexity from 28 to the 15 allowed.(‰×ã¼úÿÿÿÿ
+Kpython:S1172Â"2Remove the unused function parameter "query_type".(¨éÂÂ
+wpython:S1186ƒ"YAdd a nested comment explaining why this method is empty, or complete the implementation.(İ‚»İüÿÿÿÿ
+Gpython:S1172´!".Remove the unused function parameter "schema".(¬Š¨ò
+mpython:S3776ó!"TRefactor this function to reduce its Cognitive Complexity from 26 to the 15 allowed.(«°“Á
+qpython:S1186ã#"YAdd a nested comment explaining why this method is empty, or complete the implementation.(ïÙ¾h
+jpython:S107¨%"MMethod "__init__" has 16 parameters, which is greater than the 13 authorized.(´Â“†üÿÿÿÿ
+wpython:S1186ï%"YAdd a nested comment explaining why this method is empty, or complete the implementation.(êÁ°­ÿÿÿÿÿ
+Upython:S5754ò("<Specify an exception class to catch or reraise the exception(ˆÊÉ·
+Apython:S108¼*")Either remove or fill this block of code.(ã‘Û¾
+mpython:S3776Á+"TRefactor this function to reduce its Cognitive Complexity from 16 to the 15 allowed.(ø»Æÿ
+spython:S117¹-"VRename this local variable "Field" to match the regular expression ^[_a-z][a-z0-9_]*$.(Ä¦Ğ…ùÿÿÿÿ
+mpython:S3776Á."TRefactor this function to reduce its Cognitive Complexity from 17 to the 15 allowed.( ½Ÿ‹
+epython:S107 0"MMethod "__init__" has 18 parameters, which is greater than the 13 authorized.(íÜ¼•
+mpython:S3776è0"TRefactor this function to reduce its Cognitive Complexity from 16 to the 15 allowed.(ÀãİÌ
+mpython:S3776˜2"TRefactor this function to reduce its Cognitive Complexity from 19 to the 15 allowed.(óõ»â
+mpython:S1173"URename this local variable "Meta" to match the regular expression ^[_a-z][a-z0-9_]*$.(÷Øˆ®
+tpython:S117‚3"WRename this local variable "Schema" to match the regular expression ^[_a-z][a-z0-9_]*$.(õÓ†úÿÿÿÿ
+mpython:S3776Ú2"TRefactor this function to reduce its Cognitive Complexity from 50 to the 15 allowed.(ƒ³Ûí
+wpython:S1186ú3"YAdd a nested comment explaining why this method is empty, or complete the implementation.(½ôª‡ıÿÿÿÿ
+kpython:S3776‰4"TRefactor this function to reduce its Cognitive Complexity from 24 to the 15 allowed.(Âô`
+rpython:S3776Î4"TRefactor this function to reduce its Cognitive Complexity from 21 to the 15 allowed.(À¡‘ƒüÿÿÿÿ
+mpython:S3776ı5"TRefactor this function to reduce its Cognitive Complexity from 25 to the 15 allowed.(ö§«„
+Bpython:S1940Ù6")Use the opposite operator ("!=") instead.( È×
+mpython:S3776€8"TRefactor this function to reduce its Cognitive Complexity from 18 to the 15 allowed.(É“ÿç
+rpython:S3776Å9"TRefactor this function to reduce its Cognitive Complexity from 42 to the 15 allowed.(ä”ª›şÿÿÿÿ
+mpython:S3776ˆ:"TRefactor this function to reduce its Cognitive Complexity from 33 to the 15 allowed.(Ø€Ñš
+mpython:S3776ñ:"TRefactor this function to reduce its Cognitive Complexity from 35 to the 15 allowed.(Æ›´¸
+Upython:S5754‡;"<Specify an exception class to catch or reraise the exception(–’Ê
+mpython:S3776”;"TRefactor this function to reduce its Cognitive Complexity from 33 to the 15 allowed.(Ú—ù©
+6python:S125´;"Remove this commented out code.(¹—Ğ
+rpython:S3776à<"TRefactor this function to reduce its Cognitive Complexity from 45 to the 15 allowed.(Àë®†úÿÿÿÿ
+Cpython:S1481³="*Remove the unused local variable "fields".(œÍ
+lpython:S3776ë="TRefactor this function to reduce its Cognitive Complexity from 38 to the 15 allowed.(ïÙ¾h
+rpython:S3776°>"TRefactor this function to reduce its Cognitive Complexity from 25 to the 15 allowed.(¨×úûùÿÿÿÿ
+kpython:S1226î>"MIntroduce a new variable or use its initial value before reassigning 'model'.(§³İÍÿÿÿÿÿ
+mpython:S3776™?"TRefactor this function to reduce its Cognitive Complexity from 55 to the 15 allowed.(³üğ„
+rpython:S3776æ?"TRefactor this function to reduce its Cognitive Complexity from 20 to the 15 allowed.(ÆòíÎÿÿÿÿÿ

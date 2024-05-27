@@ -1,0 +1,16 @@
+[project]
+name = "foodapi"
+version = "0.0.1"
+authors = [
+  { name="Jhonatan Eduardo - RM350939", email="jhonatanepp@gmail.com" },
+]
+description = "Tech Challenge Fase 1 - Food API"
+readme = "README.md"
+requires-python = ">=3.10"
+
+# [project.urls]
+# Homepage = "https://github.com/pypa/sampleproject"
+# Issues = "https://github.com/pypa/sampleproject/issues"
+
+[tool.pytest.ini_options]
+pythonpath = "src"
