@@ -3,4 +3,5 @@ Flask==3.0.3
 peewee==3.17.5
 pydantic==2.7.1
 flasgger==0.9.7b2
+psycopg2-binary==2.9.9
 setuptools

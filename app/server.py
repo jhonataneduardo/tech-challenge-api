@@ -21,5 +21,5 @@ def root():
     return jsonify({"project": "Tech Challence - Fase 1"}), HTTPStatus.OK
 
 
-if __name__ == "__main__":
-    app.run(debug=True)
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)

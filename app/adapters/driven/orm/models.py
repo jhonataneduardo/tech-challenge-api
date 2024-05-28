@@ -1,10 +1,17 @@
+import os
 from typing import Dict
 from datetime import datetime
 from playhouse.shortcuts import model_to_dict
-from peewee import (SqliteDatabase, Model, CharField, DecimalField, TextField, ForeignKeyField, DateTimeField,
+from peewee import (PostgresqlDatabase, Model, CharField, DecimalField, TextField, ForeignKeyField, DateTimeField,
                     SmallIntegerField)
 
-db = SqliteDatabase('foodapi.db')
+db = PostgresqlDatabase(
+    database=os.environ.get("DATABASE_NAME"),
+    host=os.environ.get("DATABASE_HOST"),
+    port=os.environ.get("DATABASE_PORT"),
+    user=os.environ.get("DATABASE_USER"),
+    password=os.environ.get("DATABASE_PASSWORD")
+)
 
 
 class CustomerModel(Model):
@@ -79,6 +86,8 @@ class OrderItemModel(Model):
         database = db
         table_name = "order_items"
 
+
+db.connect()
 
 with db:
     db.create_tables([CustomerModel, CategoryModel, ProductModel, OrderModel, OrderItemModel])
