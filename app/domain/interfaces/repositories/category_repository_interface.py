@@ -7,7 +7,7 @@ from app.domain.entities.category_entity import CategoryEntity
 class CategoryRepositoryInterface(ABC):
 
     @abstractmethod
-    def create(self, category_entity: CategoryEntity) -> None:
+    def create(self, category_entity: CategoryEntity) -> CategoryEntity:
         raise NotImplementedError
 
     @abstractmethod
@@ -15,5 +15,9 @@ class CategoryRepositoryInterface(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    def get_by_id(self, category_id: int) -> Optional[CategoryEntity]:
+    def get_by_id(self, category_id: int) -> CategoryEntity:
+        raise NotImplementedError
+
+    @abstractmethod
+    def get_by_name(self, name: str) -> CategoryEntity:
         raise NotImplementedError

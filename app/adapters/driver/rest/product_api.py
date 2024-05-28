@@ -144,6 +144,8 @@ def get_product(product_id: int):
         return jsonify(output), HTTPStatus.OK
     except EntityNotFoundException as err:
         return jsonify({"error": err.message}), HTTPStatus.NOT_FOUND
+    except Exception as err:
+        return jsonify({"error": str(err)}), HTTPStatus.INTERNAL_SERVER_ERROR
 
 
 @api.route("/products/<product_id>", methods=["PATCH"], endpoint="patch_product")
@@ -195,6 +197,8 @@ def patch_product(product_id: int):
         return jsonify(output), HTTPStatus.OK
     except EntityNotFoundException as err:
         return jsonify({"error": err.message}), HTTPStatus.NOT_FOUND
+    except Exception as err:
+        return jsonify({"error": str(err)}), HTTPStatus.INTERNAL_SERVER_ERROR
 
 
 @api.route("/products/<product_id>", methods=["DELETE"], endpoint="delete_product")
@@ -233,3 +237,5 @@ def delete_product(product_id: int):
         return jsonify(), HTTPStatus.NO_CONTENT
     except EntityNotFoundException as err:
         return jsonify({"error": err.message}), HTTPStatus.NOT_FOUND
+    except Exception as err:
+        return jsonify({"error": str(err)}), HTTPStatus.INTERNAL_SERVER_ERROR

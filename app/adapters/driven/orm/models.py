@@ -23,7 +23,7 @@ class CustomerModel(Model):
 
 
 class CategoryModel(Model):
-    name: str = CharField(max_length=80)
+    name: str = CharField(max_length=80, unique=True)
     created_at: datetime = DateTimeField()
     updated_at: datetime = DateTimeField(null=True)
 

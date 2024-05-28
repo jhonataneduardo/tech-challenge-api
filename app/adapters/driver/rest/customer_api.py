@@ -74,10 +74,10 @@ def register_customer():
         customer = service.create_customer(**request.json)
         output = OutputCustomerDTO.from_domain(customer=customer).to_dict()
         return jsonify(output), HTTPStatus.CREATED
-    except CustomerNotFoundException as err:
-        return jsonify({"error": err.message}), HTTPStatus.NOT_FOUND
     except CustomerAlreadyExistsException as err:
         return jsonify({"error": err.message}), HTTPStatus.BAD_REQUEST
+    except Exception as err:
+        return jsonify({"error": str(err)}), HTTPStatus.INTERNAL_SERVER_ERROR
 
 
 @api.route("/customers/by-cpf/<cpf>", methods=["GET"], endpoint="get_customer_by_cpf")
@@ -129,3 +129,5 @@ def get_customer_by_cpf(cpf: str):
         return jsonify({"error": err.message}), HTTPStatus.NOT_FOUND
     except CustomerAlreadyExistsException as err:
         return jsonify({"error": err.message}), HTTPStatus.NOT_FOUND
+    except Exception as err:
+        return jsonify({"error": str(err)}), HTTPStatus.INTERNAL_SERVER_ERROR

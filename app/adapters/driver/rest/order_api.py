@@ -86,6 +86,8 @@ def register_order():
         return jsonify(output), HTTPStatus.CREATED
     except EntityNotFoundException as err:
         return jsonify({"error": err.message}), HTTPStatus.NOT_FOUND
+    except Exception as err:
+        return jsonify({"error": str(err)}), HTTPStatus.INTERNAL_SERVER_ERROR
 
 
 @api.route("/orders", methods=["GET"], endpoint="list_order")
@@ -145,3 +147,5 @@ def list_order():
         return jsonify(output), HTTPStatus.CREATED
     except EntityNotFoundException as err:
         return jsonify({"error": err.message}), HTTPStatus.NOT_FOUND
+    except Exception as err:
+        return jsonify({"error": str(err)}), HTTPStatus.INTERNAL_SERVER_ERROR
