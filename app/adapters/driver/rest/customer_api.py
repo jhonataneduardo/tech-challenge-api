@@ -29,7 +29,7 @@ api = Blueprint("customer_api", __name__)
                 'properties': {
                     'name': {'type': 'string', 'example': 'John Doe'},
                     'email': {'type': 'string', 'example': 'john.doe@example.com'},
-                    'cpf': {'type': 'string', 'example': '123.456.789-10'}
+                    'cpf': {'type': 'string', 'example': '12345678910'}
                 },
                 'required': ['name', 'email']
             }
@@ -44,7 +44,7 @@ api = Blueprint("customer_api", __name__)
                     'id': {'type': 'integer', 'example': 1},
                     'name': {'type': 'string', 'example': 'John Doe'},
                     'email': {'type': 'string', 'example': 'john.doe@example.com'},
-                    'cpf': {'type': 'string', 'example': '123.456.789-10'},
+                    'cpf': {'type': 'string', 'example': '12345678910'},
                     'created_at': {'type': 'string', 'example': '2024-05-27T09:41:42Z'}
                 }
             }
@@ -95,7 +95,7 @@ def register_customer():
                     'properties': {
                         'id': {'type': 'integer', 'example': 1},
                         'name': {'type': 'string', 'example': 'John Doe'},
-                        'cpf': {'type': 'string', 'example': '123.456.789-00'},
+                        'cpf': {'type': 'string', 'example': '12345678900'},
                         'email': {'type': 'string', 'example': 'johndoe@example.com'},
                         'created_at': {'type': 'string', 'example': '2024-05-27T09:41:42Z'}
                     }
@@ -145,7 +145,7 @@ def list_customer():
             'type': 'string',
             'required': True,
             'description': 'Customer CPF',
-            'example': '123.456.789-10'
+            'example': '12345678910'
         }
     ],
     'responses': {
@@ -157,7 +157,7 @@ def list_customer():
                     'id': {'type': 'integer', 'example': 1},
                     'name': {'type': 'string', 'example': 'John Doe'},
                     'email': {'type': 'string', 'example': 'john.doe@example.com'},
-                    'cpf': {'type': 'string', 'example': '123.456.789-10'},
+                    'cpf': {'type': 'string', 'example': '12345678910'},
                     'created_at': {'type': 'string', 'example': '2024-05-27T09:41:42Z'}
                 }
             }
