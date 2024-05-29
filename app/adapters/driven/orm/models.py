@@ -88,6 +88,3 @@ class OrderItemModel(Model):
 
 
 db.connect()
-
-with db:
-    db.create_tables([CustomerModel, CategoryModel, ProductModel, OrderModel, OrderItemModel])
