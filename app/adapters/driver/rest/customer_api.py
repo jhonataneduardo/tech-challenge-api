@@ -81,6 +81,47 @@ def register_customer():
 
 
 @api.route("/customers", methods=["GET"], endpoint="list_customer")
+@swag_from({
+    'tags': ['Customers'],
+    'summary': 'List all customers',
+    'description': 'Endpoint to retrieve a list of all customers in the system.',
+    'responses': {
+        HTTPStatus.OK: {
+            'description': 'A list of customers',
+            'schema': {
+                'type': 'array',
+                'items': {
+                    'type': 'object',
+                    'properties': {
+                        'id': {'type': 'integer', 'example': 1},
+                        'name': {'type': 'string', 'example': 'John Doe'},
+                        'cpf': {'type': 'string', 'example': '123.456.789-00'},
+                        'email': {'type': 'string', 'example': 'johndoe@example.com'},
+                        'created_at': {'type': 'string', 'example': '2024-05-27T09:41:42Z'}
+                    }
+                }
+            }
+        },
+        HTTPStatus.NOT_FOUND: {
+            'description': 'No customers found',
+            'schema': {
+                'type': 'object',
+                'properties': {
+                    'error': {'type': 'string', 'example': 'No customers found'}
+                }
+            }
+        },
+        HTTPStatus.INTERNAL_SERVER_ERROR: {
+            'description': 'Internal server error',
+            'schema': {
+                'type': 'object',
+                'properties': {
+                    'error': {'type': 'string', 'example': 'An unexpected error occurred'}
+                }
+            }
+        }
+    }
+})
 def list_customer():
     try:
         customers = service.all_customers()
