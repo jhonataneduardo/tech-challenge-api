@@ -1,4 +1,4 @@
-from typing import Dict, Optional
+from typing import Dict, Optional, List
 
 from app.adapters.driven.orm.models import CustomerModel
 
@@ -12,6 +12,12 @@ class CustomerRepository(CustomerRepositoryInterface):
         customer = CustomerModel(**customer_entity.as_dict())
         customer.save()
         return customer
+
+    def list(self) -> List[CustomerEntity] | None:
+        customers = CustomerModel.select()
+        if not customers:
+            return None
+        return [CustomerEntity.from_dict(data=customer.model_to_dict()) for customer in customers]
 
     def find_customer_by_cpf(self, cpf: str) -> Optional[Dict]:
         customer = CustomerModel.get_or_none(cpf=cpf)

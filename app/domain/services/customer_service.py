@@ -1,10 +1,10 @@
-from typing import Optional
+from typing import Optional, List
 
 from app.domain.interfaces.repositories.customer_repository_interface import CustomerRepositoryInterface
 from app.domain.entities.customer_entity import CustomerEntity
 from app.domain.value_objects import CPF, Email
 
-from app.domain.exceptions import CustomerAlreadyExistsException, CustomerNotFoundException
+from app.domain.exceptions import CustomerAlreadyExistsException, CustomerNotFoundException, EntityNotFoundException
 
 
 class CustomerService:
@@ -27,6 +27,12 @@ class CustomerService:
         model = self._repository.create(customer_entity=entity)
         entity.id = model.id
         return entity
+
+    def all_customers(self) -> List[CustomerEntity]:
+        categories = self._repository.list()
+        if not categories:
+            raise EntityNotFoundException("There are no registered customers.")
+        return categories
 
     def find_customer_by_cpf(self, cpf: str) -> Optional[CustomerEntity]:
         result = self._repository.find_customer_by_cpf(cpf=CPF(cpf).value)

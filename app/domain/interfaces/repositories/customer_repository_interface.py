@@ -1,4 +1,4 @@
-from typing import Optional, Dict
+from typing import Optional, Dict, List
 from abc import ABC, abstractmethod
 
 from app.domain.entities.customer_entity import CustomerEntity
@@ -7,7 +7,11 @@ from app.domain.entities.customer_entity import CustomerEntity
 class CustomerRepositoryInterface(ABC):
 
     @abstractmethod
-    def create(self, customer_entity: CustomerEntity) -> Optional[CustomerEntity]:
+    def create(self, customer_entity: CustomerEntity) -> CustomerEntity:
+        raise NotImplementedError
+
+    @abstractmethod
+    def list(self) -> List[CustomerEntity]:
         raise NotImplementedError
 
     @abstractmethod

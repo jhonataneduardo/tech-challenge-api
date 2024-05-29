@@ -5,7 +5,7 @@ from flasgger import swag_from
 from app.adapters.driven.orm.customer_repository import CustomerRepository
 
 from app.domain.services.customer_service import CustomerService
-from app.domain.exceptions import CustomerAlreadyExistsException, CustomerNotFoundException
+from app.domain.exceptions import CustomerAlreadyExistsException, CustomerNotFoundException, EntityNotFoundException
 
 from app.adapters.driver.dtos.customer_dto import OutputCustomerDTO
 
@@ -74,8 +74,20 @@ def register_customer():
         customer = service.create_customer(**request.json)
         output = OutputCustomerDTO.from_domain(customer=customer).to_dict()
         return jsonify(output), HTTPStatus.CREATED
-    except CustomerAlreadyExistsException as err:
+    except EntityNotFoundException as err:
         return jsonify({"error": err.message}), HTTPStatus.BAD_REQUEST
+    except Exception as err:
+        return jsonify({"error": str(err)}), HTTPStatus.INTERNAL_SERVER_ERROR
+
+
+@api.route("/customers", methods=["GET"], endpoint="list_customer")
+def list_customer():
+    try:
+        customers = service.all_customers()
+        output = [OutputCustomerDTO.from_domain(customer=customer).to_dict() for customer in customers]
+        return jsonify(output), HTTPStatus.CREATED
+    except EntityNotFoundException as err:
+        return jsonify({"error": err.message}), HTTPStatus.NOT_FOUND
     except Exception as err:
         return jsonify({"error": str(err)}), HTTPStatus.INTERNAL_SERVER_ERROR
 
