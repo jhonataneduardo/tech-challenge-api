@@ -4,13 +4,15 @@ from flasgger import swag_from
 
 from app.infrastructure.orm.category_repository import CategoryRepository
 from app.infrastructure.orm.product_repository import ProductRepository
-from app.domain.services.product_service import ProductService
 
 from app.domain.exceptions import EntityNotFoundException
 
-from app.adapters.driver.dtos.product_dto import OutputProductDTO
-
-service = ProductService(product_repository=ProductRepository(), category_repository=CategoryRepository())
+from app.application.usecases.register_product_usecase import RegisterProductUseCase
+from app.application.usecases.list_all_products_usecase import ListAllProductsUseCase
+from app.application.usecases.find_product_by_id_usecase import FindProductByIdUseCase
+from app.application.usecases.update_product_usecase import UpdateProductUseCase
+from app.application.usecases.delete_product_usecase import DeleteProductUseCase
+from app.application.presenters.dtos.product_dto import OutputProductDTO
 
 api = Blueprint("product_api", __name__)
 
@@ -65,7 +67,11 @@ api = Blueprint("product_api", __name__)
 })
 def register_product():
     try:
-        product = service.create_product(**request.json)
+        use_case = RegisterProductUseCase(
+            product_data_provider=ProductRepository(),
+            category_data_provider=CategoryRepository()
+        )
+        product = use_case.execute(**request.json)
         output = OutputProductDTO.from_domain(product=product).to_dict()
         return jsonify(output), HTTPStatus.CREATED
     except EntityNotFoundException as err:
@@ -128,7 +134,8 @@ def register_product():
 })
 def list_product():
     try:
-        products = service.all_products(**request.args)
+        use_case = ListAllProductsUseCase(product_data_provider=ProductRepository())
+        products = use_case.execute(**request.args)
         return jsonify([OutputProductDTO.from_domain(product=product).to_dict() for product in products]), HTTPStatus.OK
     except EntityNotFoundException as err:
         return jsonify({"error": err.message}), HTTPStatus.NOT_FOUND
@@ -139,7 +146,8 @@ def list_product():
 @api.route("/products/<int:product_id>", methods=["GET"], endpoint="get_product")
 def get_product(product_id: int):
     try:
-        product = service.get_product_by_id(product_id=product_id)
+        use_case = FindProductByIdUseCase(product_data_provider=ProductRepository())
+        product = use_case.execute(product_id=product_id)
         output = OutputProductDTO.from_domain(product=product).to_dict()
         return jsonify(output), HTTPStatus.OK
     except EntityNotFoundException as err:
@@ -192,7 +200,8 @@ def get_product(product_id: int):
 })
 def patch_product(product_id: int):
     try:
-        product = service.patch_product(product_id=product_id, fields=request.json)
+        use_case = UpdateProductUseCase(product_data_provider=ProductRepository())
+        product = use_case.execute(product_id=product_id, fields=request.json)
         output = OutputProductDTO.from_domain(product=product).to_dict()
         return jsonify(output), HTTPStatus.OK
     except EntityNotFoundException as err:
@@ -233,7 +242,8 @@ def patch_product(product_id: int):
 })
 def delete_product(product_id: int):
     try:
-        service.delete_product_by_id(product_id=product_id)
+        use_case = DeleteProductUseCase(product_data_provider=ProductRepository())
+        use_case.execute(product_id=product_id)
         return jsonify(), HTTPStatus.NO_CONTENT
     except EntityNotFoundException as err:
         return jsonify({"error": err.message}), HTTPStatus.NOT_FOUND

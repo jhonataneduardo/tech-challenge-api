@@ -2,10 +2,10 @@ from typing import List
 from app.infrastructure.orm.models import OrderModel, OrderItemModel
 
 from app.domain.entities.order_entity import OrderEntity, OrderEntityFilter
-from app.application.gateways.data.order_repository_Interface import OrderRepositoryInterface
+from app.application.gateways.data.order_data_provider import OrderDataProviderInterface
 
 
-class OrderRepository(OrderRepositoryInterface):
+class OrderRepository(OrderDataProviderInterface):
 
     def create(self, order_entity: OrderEntity) -> OrderEntity:
         order = OrderModel.create(

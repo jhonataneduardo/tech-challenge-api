@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 from app.domain.entities.order_entity import OrderEntity, OrderEntityFilter
 
 
-class OrderRepositoryInterface(ABC):
+class OrderDataProviderInterface(ABC):
 
     @abstractmethod
     def create(self, order_entity: OrderEntity) -> Optional[OrderEntity]:

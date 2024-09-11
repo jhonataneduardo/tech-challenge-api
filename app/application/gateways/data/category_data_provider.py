@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 from app.domain.entities.category_entity import CategoryEntity
 
 
-class CategoryRepositoryInterface(ABC):
+class CategoryDataProviderInterface(ABC):
 
     @abstractmethod
     def create(self, category_entity: CategoryEntity) -> CategoryEntity:

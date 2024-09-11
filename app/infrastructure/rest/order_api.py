@@ -6,16 +6,11 @@ from app.infrastructure.orm.order_repository import OrderRepository
 from app.infrastructure.orm.product_repository import ProductRepository
 from app.infrastructure.orm.customer_repository import CustomerRepository
 
-from app.domain.services.order_service import OrderService
 from app.domain.exceptions import EntityNotFoundException
 
-from app.adapters.driver.dtos.order_dto import OutputOrderDTO
-
-service = OrderService(
-    order_repository=OrderRepository(),
-    product_repository=ProductRepository(),
-    customer_repository=CustomerRepository()
-)
+from app.application.usecases.register_order_usecase import RegisterOrderUseCase
+from app.application.usecases.find_all_order_usecase import FindAllOrderUseCase
+from app.application.presenters.dtos.order_dto import OutputOrderDTO
 
 api = Blueprint("order_api", __name__)
 
@@ -81,7 +76,12 @@ api = Blueprint("order_api", __name__)
 })
 def register_order():
     try:
-        order = service.create_order(**request.json)
+        use_case = RegisterOrderUseCase(
+            order_data_provider=OrderRepository(),
+            product_data_provider=ProductRepository(),
+            customer_data_provider=CustomerRepository()
+        )
+        order = use_case.execute(**request.json)
         output = OutputOrderDTO.from_domain(order=order).to_dict()
         return jsonify(output), HTTPStatus.CREATED
     except EntityNotFoundException as err:
@@ -142,7 +142,8 @@ def register_order():
 })
 def list_order():
     try:
-        orders = service.all_orders(**request.args)
+        use_case = FindAllOrderUseCase(order_data_provider=OrderRepository())
+        orders = use_case.execute(**request.args)
         output = [OutputOrderDTO.from_domain(order=order).to_dict() for order in orders]
         return jsonify(output), HTTPStatus.CREATED
     except EntityNotFoundException as err:

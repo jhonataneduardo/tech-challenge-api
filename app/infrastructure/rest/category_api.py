@@ -3,12 +3,12 @@ from flask import Blueprint, request, jsonify
 from flasgger import swag_from
 
 from app.infrastructure.orm.category_repository import CategoryRepository
-from app.adapters.driver.dtos.category_dto import OutputCategoryDTO
-
-from app.domain.services.category_service import CategoryService
 from app.domain.exceptions import EntityNotFoundException, EntityAlreadyExistsException
 
-service = CategoryService(CategoryRepository())
+from app.application.presenters.dtos.category_dto import OutputCategoryDTO
+from app.application.usecases.register_category_usecase import RegisterCategoryUseCase
+from app.application.usecases.find_all_categories_usecase import FindAllCategoriesUseCase
+from app.application.usecases.find_category_by_id_usecase import FindCategoryByIdUseCase
 
 api = Blueprint("category_api", __name__)
 
@@ -66,7 +66,8 @@ api = Blueprint("category_api", __name__)
 })
 def register_category():
     try:
-        category = service.create_category(**request.json)
+        use_case = RegisterCategoryUseCase(CategoryRepository())
+        category = use_case.execute(**request.json)
         output = OutputCategoryDTO.from_domain(category=category).to_dict()
         return jsonify(output), HTTPStatus.CREATED
     except EntityAlreadyExistsException as err:
@@ -117,7 +118,8 @@ def register_category():
 })
 def list_category():
     try:
-        categories = service.all_categories()
+        use_case = FindAllCategoriesUseCase(CategoryRepository())
+        categories = use_case.execute()
         output = [OutputCategoryDTO.from_domain(category=category).to_dict() for category in categories]
         return jsonify(output), HTTPStatus.OK
     except EntityNotFoundException as err:
@@ -175,7 +177,8 @@ def list_category():
 })
 def get_category(category_id: int):
     try:
-        category = service.get_category_by_id(category_id=category_id)
+        use_case = FindCategoryByIdUseCase(CategoryRepository())
+        category = use_case.execute(category_id=category_id)
         output = OutputCategoryDTO.from_domain(category=category).to_dict()
         return jsonify(output), HTTPStatus.OK
     except EntityNotFoundException as err:

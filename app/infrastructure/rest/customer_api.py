@@ -3,13 +3,12 @@ from flask import Blueprint, request, jsonify
 from flasgger import swag_from
 
 from app.infrastructure.orm.customer_repository import CustomerRepository
-
-from app.domain.services.customer_service import CustomerService
 from app.domain.exceptions import CustomerAlreadyExistsException, CustomerNotFoundException, EntityNotFoundException
 
-from app.adapters.driver.dtos.customer_dto import OutputCustomerDTO
-
-service = CustomerService(repository=CustomerRepository())
+from app.application.usecases.register_customer_usecase import RegisterCustomerUseCase
+from app.application.usecases.list_all_customers_usecase import ListAllCustomersUseCase
+from app.application.usecases.find_customer_by_cpf_usecase import FindCustomerByCPFUseCase
+from app.application.presenters.dtos.customer_dto import OutputCustomerDTO
 
 api = Blueprint("customer_api", __name__)
 
@@ -71,7 +70,8 @@ api = Blueprint("customer_api", __name__)
 })
 def register_customer():
     try:
-        customer = service.create_customer(**request.json)
+        use_case = RegisterCustomerUseCase(customer_data_provider=CustomerRepository())
+        customer = use_case.execute(**request.json)
         output = OutputCustomerDTO.from_domain(customer=customer).to_dict()
         return jsonify(output), HTTPStatus.CREATED
     except EntityNotFoundException as err:
@@ -124,7 +124,8 @@ def register_customer():
 })
 def list_customer():
     try:
-        customers = service.all_customers()
+        use_case = ListAllCustomersUseCase(customer_data_provider=CustomerRepository())
+        customers = use_case.execute()
         output = [OutputCustomerDTO.from_domain(customer=customer).to_dict() for customer in customers]
         return jsonify(output), HTTPStatus.CREATED
     except EntityNotFoundException as err:
@@ -175,7 +176,8 @@ def list_customer():
 })
 def get_customer_by_cpf(cpf: str):
     try:
-        customer = service.find_customer_by_cpf(cpf)
+        use_case = FindCustomerByCPFUseCase(customer_data_provider=CustomerRepository())
+        customer = use_case.execute(cpf=cpf)
         output = OutputCustomerDTO.from_domain(customer=customer).to_dict()
         return jsonify(output), HTTPStatus.OK
     except CustomerNotFoundException as err:

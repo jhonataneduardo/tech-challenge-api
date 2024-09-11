@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 from app.domain.entities.product_entity import ProductEntity, ProductEntityFilter
 
 
-class ProductRepositoryInterface(ABC):
+class ProductDataProviderInterface(ABC):
 
     @abstractmethod
     def create(self, product_entity: ProductEntity) -> Optional[ProductEntity]:

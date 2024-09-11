@@ -2,10 +2,10 @@ from typing import List, Optional, Dict
 from app.infrastructure.orm.models import ProductModel
 
 from app.domain.entities.product_entity import ProductEntity, ProductEntityFilter
-from app.application.gateways.data.product_repository_Interface import ProductRepositoryInterface
+from app.application.gateways.data.product_data_provider import ProductDataProviderInterface
 
 
-class ProductRepository(ProductRepositoryInterface):
+class ProductRepository(ProductDataProviderInterface):
 
     def create(self, product_entity: ProductEntity) -> ProductEntity:
         product = ProductModel(

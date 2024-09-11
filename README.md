@@ -1,6 +1,6 @@
-# Arquitetura Hexagonal com Python
+# Arquitetura Limpa com Python
 
-FoodAPI é um projeto de estudo, desenvolvido com Python e Flask e baseado na Arquitetura Hexagonal.
+FoodAPI é um projeto de estudo, desenvolvido com Python e Flask e baseado na Arquitetura Limpa.
 
 ## Sumário
 

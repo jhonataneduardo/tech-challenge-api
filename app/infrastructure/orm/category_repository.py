@@ -2,10 +2,10 @@ from typing import List
 from app.infrastructure.orm.models import CategoryModel
 
 from app.domain.entities.category_entity import CategoryEntity
-from app.application.gateways.data.category_repository_interface import CategoryRepositoryInterface
+from app.application.gateways.data.category_data_provider import CategoryDataProviderInterface
 
 
-class CategoryRepository(CategoryRepositoryInterface):
+class CategoryRepository(CategoryDataProviderInterface):
 
     def create(self, category_entity: CategoryEntity) -> CategoryEntity:
         category = CategoryModel.create(name=category_entity.name, created_at=category_entity.created_at)
