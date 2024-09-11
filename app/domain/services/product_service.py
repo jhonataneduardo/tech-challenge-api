@@ -1,8 +1,8 @@
 from datetime import datetime
 from typing import List, Dict
 
-from app.domain.interfaces.repositories.product_repository_Interface import ProductRepositoryInterface
-from app.domain.interfaces.repositories.category_repository_interface import CategoryRepositoryInterface
+from app.application.gateways.data.product_repository_Interface import ProductRepositoryInterface
+from app.application.gateways.data.category_repository_interface import CategoryRepositoryInterface
 
 from app.domain.entities.product_entity import ProductEntity, ProductEntityFilter
 

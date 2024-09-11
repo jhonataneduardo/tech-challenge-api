@@ -2,7 +2,7 @@ from http import HTTPStatus
 from flask import Blueprint, request, jsonify
 from flasgger import swag_from
 
-from app.adapters.driven.orm.category_repository import CategoryRepository
+from app.infrastructure.orm.category_repository import CategoryRepository
 from app.adapters.driver.dtos.category_dto import OutputCategoryDTO
 
 from app.domain.services.category_service import CategoryService

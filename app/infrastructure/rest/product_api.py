@@ -2,8 +2,8 @@ from http import HTTPStatus
 from flask import Blueprint, request, jsonify
 from flasgger import swag_from
 
-from app.adapters.driven.orm.category_repository import CategoryRepository
-from app.adapters.driven.orm.product_repository import ProductRepository
+from app.infrastructure.orm.category_repository import CategoryRepository
+from app.infrastructure.orm.product_repository import ProductRepository
 from app.domain.services.product_service import ProductService
 
 from app.domain.exceptions import EntityNotFoundException

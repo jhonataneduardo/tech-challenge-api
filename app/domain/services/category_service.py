@@ -1,6 +1,6 @@
 from typing import List
 
-from app.domain.interfaces.repositories.category_repository_interface import CategoryRepositoryInterface
+from app.application.gateways.data.category_repository_interface import CategoryRepositoryInterface
 from app.domain.entities.category_entity import CategoryEntity
 from app.domain.exceptions import EntityNotFoundException, EntityAlreadyExistsException
 

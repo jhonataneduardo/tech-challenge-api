@@ -1,8 +1,8 @@
 from typing import List, Dict
 
-from app.domain.interfaces.repositories.order_repository_Interface import OrderRepositoryInterface
-from app.domain.interfaces.repositories.product_repository_Interface import ProductRepositoryInterface
-from app.domain.interfaces.repositories.customer_repository_interface import CustomerRepositoryInterface
+from app.application.gateways.data.order_repository_Interface import OrderRepositoryInterface
+from app.application.gateways.data.product_repository_Interface import ProductRepositoryInterface
+from app.application.gateways.data.customer_data_provider import CustomerRepositoryInterface
 
 from app.domain.entities.order_entity import OrderEntity, OrderItemEntity, OrderEntityFilter
 from app.domain.exceptions import EntityNotFoundException

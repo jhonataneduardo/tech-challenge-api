@@ -1,12 +1,12 @@
 from typing import Dict, Optional, List
 
-from app.adapters.driven.orm.models import CustomerModel
+from app.infrastructure.orm.models import CustomerModel
 
 from app.domain.entities.customer_entity import CustomerEntity
-from app.domain.interfaces.repositories.customer_repository_interface import CustomerRepositoryInterface
+from app.application.gateways.data.customer_data_provider import CustomerDataProviderInterface
 
 
-class CustomerRepository(CustomerRepositoryInterface):
+class CustomerRepository(CustomerDataProviderInterface):
 
     def create(self, customer_entity: CustomerEntity) -> CustomerModel:
         customer = CustomerModel(**customer_entity.as_dict())

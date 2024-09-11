@@ -2,9 +2,9 @@ from http import HTTPStatus
 from flask import Blueprint, request, jsonify
 from flasgger import swag_from
 
-from app.adapters.driven.orm.order_repository import OrderRepository
-from app.adapters.driven.orm.product_repository import ProductRepository
-from app.adapters.driven.orm.customer_repository import CustomerRepository
+from app.infrastructure.orm.order_repository import OrderRepository
+from app.infrastructure.orm.product_repository import ProductRepository
+from app.infrastructure.orm.customer_repository import CustomerRepository
 
 from app.domain.services.order_service import OrderService
 from app.domain.exceptions import EntityNotFoundException

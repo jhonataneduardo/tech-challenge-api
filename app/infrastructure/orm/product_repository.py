@@ -1,8 +1,8 @@
 from typing import List, Optional, Dict
-from app.adapters.driven.orm.models import ProductModel
+from app.infrastructure.orm.models import ProductModel
 
 from app.domain.entities.product_entity import ProductEntity, ProductEntityFilter
-from app.domain.interfaces.repositories.product_repository_Interface import ProductRepositoryInterface
+from app.application.gateways.data.product_repository_Interface import ProductRepositoryInterface
 
 
 class ProductRepository(ProductRepositoryInterface):

@@ -2,7 +2,7 @@ from http import HTTPStatus
 from flask import Flask, jsonify
 from flasgger import Swagger
 
-from app.adapters.driver.rest import customer_api, category_api, product_api, order_api
+from app.infrastructure.rest import category_api, customer_api, order_api, product_api
 
 app = Flask("FoodAPI")
 swagger = Swagger(app)
@@ -18,7 +18,7 @@ app.json.sort_keys = False
 
 @app.get("/")
 def root():
-    return jsonify({"project": "Tech Challence - Fase 1"}), HTTPStatus.OK
+    return jsonify({"project": "Tech Challence - Fase 2"}), HTTPStatus.OK
 
 
 if __name__ == '__main__':

@@ -1,8 +1,8 @@
-from typing import List, Optional
-from app.adapters.driven.orm.models import CategoryModel
+from typing import List
+from app.infrastructure.orm.models import CategoryModel
 
 from app.domain.entities.category_entity import CategoryEntity
-from app.domain.interfaces.repositories.category_repository_interface import CategoryRepositoryInterface
+from app.application.gateways.data.category_repository_interface import CategoryRepositoryInterface
 
 
 class CategoryRepository(CategoryRepositoryInterface):

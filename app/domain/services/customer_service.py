@@ -1,6 +1,6 @@
 from typing import Optional, List
 
-from app.domain.interfaces.repositories.customer_repository_interface import CustomerRepositoryInterface
+from app.application.gateways.data.customer_data_provider import CustomerRepositoryInterface
 from app.domain.entities.customer_entity import CustomerEntity
 from app.domain.value_objects import CPF, Email
 

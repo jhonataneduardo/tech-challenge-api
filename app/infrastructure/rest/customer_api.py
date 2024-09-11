@@ -2,7 +2,7 @@ from http import HTTPStatus
 from flask import Blueprint, request, jsonify
 from flasgger import swag_from
 
-from app.adapters.driven.orm.customer_repository import CustomerRepository
+from app.infrastructure.orm.customer_repository import CustomerRepository
 
 from app.domain.services.customer_service import CustomerService
 from app.domain.exceptions import CustomerAlreadyExistsException, CustomerNotFoundException, EntityNotFoundException

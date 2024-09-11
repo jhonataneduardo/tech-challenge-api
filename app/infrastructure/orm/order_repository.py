@@ -1,8 +1,8 @@
-from typing import List, Optional, Dict
-from app.adapters.driven.orm.models import OrderModel, OrderItemModel
+from typing import List
+from app.infrastructure.orm.models import OrderModel, OrderItemModel
 
 from app.domain.entities.order_entity import OrderEntity, OrderEntityFilter
-from app.domain.interfaces.repositories.order_repository_Interface import OrderRepositoryInterface
+from app.application.gateways.data.order_repository_Interface import OrderRepositoryInterface
 
 
 class OrderRepository(OrderRepositoryInterface):

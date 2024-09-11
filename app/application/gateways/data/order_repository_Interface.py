@@ -1,4 +1,4 @@
-from typing import Optional, List, Dict
+from typing import Optional, List
 from abc import ABC, abstractmethod
 
 from app.domain.entities.order_entity import OrderEntity, OrderEntityFilter

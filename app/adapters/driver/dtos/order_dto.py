@@ -1,5 +1,4 @@
 from typing import List, Optional
-from datetime import datetime
 from pydantic import BaseModel
 
 from app.domain.entities.order_entity import OrderEntity, OrderStatus, OrderItemEntity

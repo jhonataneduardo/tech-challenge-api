@@ -4,10 +4,10 @@ from abc import ABC, abstractmethod
 from app.domain.entities.customer_entity import CustomerEntity
 
 
-class CustomerRepositoryInterface(ABC):
+class CustomerDataProviderInterface(ABC):
 
     @abstractmethod
-    def create(self, customer_entity: CustomerEntity) -> CustomerEntity:
+    def create(self, customer_entity: CustomerEntity) -> Optional[CustomerEntity]:
         raise NotImplementedError
 
     @abstractmethod
