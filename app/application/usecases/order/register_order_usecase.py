@@ -5,7 +5,7 @@ from app.application.gateways.data.product_data_provider import ProductDataProvi
 from app.application.gateways.data.customer_data_provider import CustomerDataProviderInterface
 from app.application.usecases.base_usecase import BaseUseCase
 
-from app.domain.entities.order_entity import OrderEntity, OrderItemEntity, OrderEntityFilter
+from app.domain.entities.order_entity import OrderEntity, OrderItemEntity
 from app.domain.exceptions import EntityNotFoundException
 
 

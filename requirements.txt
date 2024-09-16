@@ -5,3 +5,4 @@ pydantic==2.7.1
 flasgger==0.9.7b2
 psycopg2-binary==2.9.9
 setuptools
+python-dotenv==1.0.1

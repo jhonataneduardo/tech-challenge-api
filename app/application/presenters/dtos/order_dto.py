@@ -7,11 +7,19 @@ from app.domain.entities.order_entity import OrderEntity, OrderStatus, OrderItem
 class OrderItemDTO(BaseModel):
     id: int
     product_id: int
+    description: str
+    price: float
     quantity: float
 
     @classmethod
     def from_domain(cls, order_item: OrderItemEntity):
-        return cls(id=order_item.id, product_id=order_item.product.id, quantity=order_item.quantity)
+        return cls(
+            id=order_item.id,
+            product_id=order_item.product.id,
+            description=order_item.product.description,
+            price=order_item.price,
+            quantity=order_item.quantity
+        )
 
 
 class OutputOrderDTO(BaseModel):

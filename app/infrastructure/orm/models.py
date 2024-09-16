@@ -66,7 +66,7 @@ class OrderModel(Model):
     updated_at: datetime = DateTimeField(null=True)
 
     def model_to_dict(self) -> Dict:
-        return model_to_dict(self, backrefs=True)
+        return model_to_dict(self, backrefs=True, exclude=[PaymentModel.order])
 
     class Meta:
         database = db
@@ -85,6 +85,34 @@ class OrderItemModel(Model):
     class Meta:
         database = db
         table_name = "order_items"
+        
+        
+class PaymentTypeModel(Model):
+    name: str = CharField(max_length=80)
+    description: str = TextField()
+    created_at: datetime = DateTimeField()
+
+    def model_to_dict(self) -> Dict:
+        return model_to_dict(self)
+
+    class Meta:
+        database = db
+        table_name = "payment_types"
+
+   
+class PaymentModel(Model):
+    order: int = ForeignKeyField(OrderModel, unique=True, backref="payments")
+    amount: float = DecimalField()
+    type: int = ForeignKeyField(PaymentTypeModel)
+    status: int = SmallIntegerField()
+    created_at: datetime = DateTimeField()
+
+    def model_to_dict(self) -> Dict:
+        return model_to_dict(self, backrefs=True)
+
+    class Meta:
+        database = db
+        table_name = "payments"
 
 
 db.connect()

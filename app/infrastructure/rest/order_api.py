@@ -1,4 +1,5 @@
 from http import HTTPStatus
+
 from flask import Blueprint, request, jsonify
 from flasgger import swag_from
 
@@ -7,9 +8,10 @@ from app.infrastructure.orm.product_repository import ProductRepository
 from app.infrastructure.orm.customer_repository import CustomerRepository
 
 from app.domain.exceptions import EntityNotFoundException
+from app.domain.parameters import OrderFilters
 
-from app.application.usecases.register_order_usecase import RegisterOrderUseCase
-from app.application.usecases.find_all_order_usecase import FindAllOrderUseCase
+from app.application.usecases.order.register_order_usecase import RegisterOrderUseCase
+from app.application.usecases.order.find_all_order_usecase import FindAllOrderUseCase
 from app.application.presenters.dtos.order_dto import OutputOrderDTO
 
 api = Blueprint("order_api", __name__)
@@ -50,7 +52,7 @@ api = Blueprint("order_api", __name__)
                 'properties': {
                     'id': {'type': 'integer', 'example': 1},
                     'customer_id': {'type': 'integer', 'example': 1},
-                    'status': {'type': 'string', 'example': 'RECEIVED'},
+                    'status': {'type': 'string', 'example': 'PENDING'},
                     'items': {'type': 'array', 'items': {'type': 'integer'}, 'example': [
                         {
                             "product_id": 1,
@@ -143,7 +145,12 @@ def register_order():
 def list_order():
     try:
         use_case = FindAllOrderUseCase(order_data_provider=OrderRepository())
-        orders = use_case.execute(**request.args)
+        orders = use_case.execute(OrderFilters(
+            customer_id=request.args.get("customer_id"),
+            order=request.args.get("order"),
+            sort=request.args.get("sort"),
+            status=request.args.get("status").split(",") if request.args.get("status") else None
+        ))
         output = [OutputOrderDTO.from_domain(order=order).to_dict() for order in orders]
         return jsonify(output), HTTPStatus.CREATED
     except EntityNotFoundException as err:

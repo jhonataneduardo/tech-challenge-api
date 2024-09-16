@@ -7,11 +7,11 @@ from app.infrastructure.orm.product_repository import ProductRepository
 
 from app.domain.exceptions import EntityNotFoundException
 
-from app.application.usecases.register_product_usecase import RegisterProductUseCase
-from app.application.usecases.list_all_products_usecase import ListAllProductsUseCase
-from app.application.usecases.find_product_by_id_usecase import FindProductByIdUseCase
-from app.application.usecases.update_product_usecase import UpdateProductUseCase
-from app.application.usecases.delete_product_usecase import DeleteProductUseCase
+from app.application.usecases.product.register_product_usecase import RegisterProductUseCase
+from app.application.usecases.product.list_all_products_usecase import ListAllProductsUseCase
+from app.application.usecases.product.find_product_by_id_usecase import FindProductByIdUseCase
+from app.application.usecases.product.update_product_usecase import UpdateProductUseCase
+from app.application.usecases.product.delete_product_usecase import DeleteProductUseCase
 from app.application.presenters.dtos.product_dto import OutputProductDTO
 
 api = Blueprint("product_api", __name__)

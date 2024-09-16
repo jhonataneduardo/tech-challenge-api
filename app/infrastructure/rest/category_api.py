@@ -6,9 +6,9 @@ from app.infrastructure.orm.category_repository import CategoryRepository
 from app.domain.exceptions import EntityNotFoundException, EntityAlreadyExistsException
 
 from app.application.presenters.dtos.category_dto import OutputCategoryDTO
-from app.application.usecases.register_category_usecase import RegisterCategoryUseCase
-from app.application.usecases.find_all_categories_usecase import FindAllCategoriesUseCase
-from app.application.usecases.find_category_by_id_usecase import FindCategoryByIdUseCase
+from app.application.usecases.category.register_category_usecase import RegisterCategoryUseCase
+from app.application.usecases.category.find_all_categories_usecase import FindAllCategoriesUseCase
+from app.application.usecases.category.find_category_by_id_usecase import FindCategoryByIdUseCase
 
 api = Blueprint("category_api", __name__)
 

@@ -5,9 +5,9 @@ from flasgger import swag_from
 from app.infrastructure.orm.customer_repository import CustomerRepository
 from app.domain.exceptions import CustomerAlreadyExistsException, CustomerNotFoundException, EntityNotFoundException
 
-from app.application.usecases.register_customer_usecase import RegisterCustomerUseCase
-from app.application.usecases.list_all_customers_usecase import ListAllCustomersUseCase
-from app.application.usecases.find_customer_by_cpf_usecase import FindCustomerByCPFUseCase
+from app.application.usecases.customer.register_customer_usecase import RegisterCustomerUseCase
+from app.application.usecases.customer.list_all_customers_usecase import ListAllCustomersUseCase
+from app.application.usecases.customer.find_customer_by_cpf_usecase import FindCustomerByCPFUseCase
 from app.application.presenters.dtos.customer_dto import OutputCustomerDTO
 
 api = Blueprint("customer_api", __name__)
