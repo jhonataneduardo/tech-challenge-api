@@ -1,6 +1,6 @@
 from enum import Enum
 from typing import List, Dict, Optional
-from dataclasses import dataclass, asdict
+from dataclasses import dataclass, asdict, field
 
 from app.domain.entities.base import AggregateRoot
 from app.domain.entities.customer_entity import CustomerEntity
@@ -8,10 +8,11 @@ from app.domain.entities.product_entity import ProductEntity
 
 
 class OrderStatus(Enum):
-    RECEIVED = 1
-    IN_PREPARATION = 2
-    READY = 3
-    COMPLETED = 4
+    PENDING = 1
+    RECEIVED = 2
+    IN_PREPARATION = 3
+    READY = 4
+    COMPLETED = 5
 
     @classmethod
     def from_value(cls, value):
@@ -36,7 +37,7 @@ class OrderEntity(AggregateRoot):
     customer: CustomerEntity
     items: List[OrderItemEntity]
     total: float
-    status: OrderStatus = OrderStatus.RECEIVED
+    status: OrderStatus = OrderStatus.PENDING
 
     def add_item(self, product: ProductEntity, quantity: int):
         order_item = OrderItemEntity(product, quantity)
@@ -49,11 +50,7 @@ class OrderEntity(AggregateRoot):
     @classmethod
     def from_dict(cls, data: Dict):
         data_copy = data
+        data_copy["status"] = OrderStatus(data["status"])
         data_copy["customer"] = CustomerEntity.from_dict(data=data["customer"])
         data_copy["items"] = [OrderItemEntity.from_dict(item) for item in data["items"]]
         return cls(**data_copy)
-
-
-@dataclass(frozen=True)
-class OrderEntityFilter:
-    customer_id: Optional[int] = None
