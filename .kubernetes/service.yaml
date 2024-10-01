@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: service-food-api
+  name: service-tech-challenge-api
 spec:
-  type: NodePort
+  type: LoadBalancer
   ports:
-    - port: 3000
-      targetPort: 3000
-      nodePort: 32000
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
   selector:
-    app: deployment-food-api
+    app: deployment-tech-challenge-api

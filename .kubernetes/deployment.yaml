@@ -1,27 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: deployment-food-api
+  name: deployment-tech-challenge-api
   labels:
-    app: deployment-food-api
+    app: deployment-tech-challenge-api
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
-      app: deployment-food-api
+      app: deployment-tech-challenge-api
   template:
     metadata:
       labels:
-        app: deployment-food-api
+        app: deployment-tech-challenge-api
     spec:
       containers:
-        - name: deployment-food-api
-          image: jhonataneduardo/tech-challenge-api:v1
+        - name: deployment-tech-challenge-api
+          image: 615299737577.dkr.ecr.us-east-1.amazonaws.com/tech-challenge-api:latest
           resources:
             limits:
               memory: "128Mi"
               cpu: "500m"
           ports:
             - containerPort: 5000
-      imagePullSecrets:
-        - name: docker-registry-secret
